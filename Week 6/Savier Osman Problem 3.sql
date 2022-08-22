@@ -1,0 +1,8 @@
+ALTER TABLE employee add primary key (EMP_NUM);
+
+ALTER TABLE charter add primary key (CHAR_TRIP);
+
+ALTER TABLE crew 
+	ADD FOREIGN KEY (CHAR_TRIP) REFERENCES charter(CHAR_TRIP),
+	ADD FOREIGN KEY (EMP_NUM) REFERENCES employee(EMP_NUM),
+    ADD PRIMARY KEY (CHAR_TRIP, EMP_NUM);

@@ -1,0 +1,6 @@
+CREATE VIEW CUSTOMER_NAMES AS
+select CUST_FNAME, CUST_LNAME
+from customer
+WHERE CUST_NUM < 2000;
+
+SELECT * from customer_names;

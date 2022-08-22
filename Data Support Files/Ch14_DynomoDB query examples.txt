@@ -1,0 +1,20 @@
+aws dynamodb query --table-name fact --key-condition-expression "(subject = :subject)" --expression-attribute-values '{ ":subject": { "S": "Programming" }}' --select SPECIFIC_ATTRIBUTES --projection-expression "Display, fname, lname"
+
+aws dynamodb query --key-condition-expression "(subject = :subject) --table-name fact --projection-expression "Display, fname, lname"
+
+aws dynamodb scan --table-name fact --projection-expression "display" --filter-expression 'subject = :sub' --expression-attribute-values '{":sub":{"S":"programming"}}'
+
+aws dynamodb scan --table-name fact --projection-expression "display" --filter-expression 'fname = :name' --expression-attribute-values '{":name":{"S":"robert"}}'
+
+aws dynamodb scan --table-name fact --projection-expression "display" --filter-expression 'type = :ty' --expression-attribute-values '{":ty":{"S":"student"}}'
+
+aws dynamodb scan --table-name fact --projection-expression "display" --filter-expression '#t = :type and age > :age' --expression-attribute-values '{":type":{"S":"student"}, ":age":{"N":"25"}}' --expression-attribute-names '{"#t":"type"}'
+
+aws dynamodb scan --table-name fact --projection-expression "display" --filter-expression 'contains(checkouts.subject, :sub)' --expression-attribute-values '{":sub":{"S":"database"}}'
+
+aws dynamodb scan --table-name fact --projection-expression "display" --filter-expression 'contains(checkouts[0].subject, :sub) or contains(checkouts[1].subject, :sub) or contains(checkouts[2].subject, :sub)' --expression-attribute-values '{":sub":{"S":"database"}}'
+
+
+aws dynamodb scan --table-name fact --projection-expression "display" --filter-expression 'contains(checkouts[0].subject, :sub) or contains(checkouts[1].subject, :sub) or contains(checkouts[2].subject, :sub)' --expression-attribute-values '{":sub":{"S":"database"}}'
+
+aws dynamodb scan --table-name Fact --projection-expression "display, age" --filter-expression '#t = :type and contains(checkouts[0].subject, :sub)' --expression-attribute-values '{":type":{"S":"student"},":sub":{"S":"programming"}}' --expression-attribute-names '{"#t":"type"}'

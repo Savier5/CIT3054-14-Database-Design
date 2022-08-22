@@ -1,0 +1,4 @@
+select JOB_DESCRIPTION, JOB_CHG_HOUR
+from job
+where JOB_CHG_HOUR > 50
+order by JOB_DESCRIPTION;
